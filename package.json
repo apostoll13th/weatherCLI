@@ -6,9 +6,14 @@
   "bin": {
     "weather": "weather.js"
   },
+  "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Anakonda13th",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "axios": "^0.26.1",
+    "chalk": "^5.0.1"
+  }
 }
