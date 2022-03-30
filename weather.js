@@ -20,6 +20,21 @@ const saveToken = async (token) => {
 
 }
 
+const saveLatLon = async (lat, lon) => {
+    if(!(lat && lon)){
+        printError('Мне нужны latitude, longitude, погугли их для своего местоположения')
+        return;
+    }
+    try {
+        await saveKeyValue(TOKEN_DICT.lat, lat)
+        await saveKeyValue(TOKEN_DICT.lon, lon)
+        printSucces('Данные вашего местоположения успешно добавлены, можете посмотреть погоду')
+    }catch (e){
+        printError(e.message)
+    }
+
+}
+
 const getForecast = async () => {
    try {
        const weather = await getWeather()
@@ -44,17 +59,21 @@ const getForecast = async () => {
 const initCLI = () => {
     const arg = getArg(process.argv)
     if(arg.h){
-      printHelp()
-    }
-    if(arg.s){
-
+     return  printHelp()
     }
     if(arg.t){
         return saveToken(arg.t)
     }
-    getForecast()
+
+    if (arg.lat && arg.lon) {
+        return saveLatLon(arg.lat, arg.lon)
+    }
+
+  return getForecast()
+
 }
 
 
 initCLI();
 
+// "lat":"44.843471","lon":"38.568556"
