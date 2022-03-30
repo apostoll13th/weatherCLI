@@ -1,6 +1,47 @@
 import axios from 'axios'
 import {getKeyValue, TOKEN_DICT} from "./storage.service.js";
 
+const getIcon = (icon) => {
+  switch (icon) {
+    case 'clear':
+      return '☀️';
+    case 'cloudy':
+      return '🌤️';
+    case 'partly-cloudy':
+      return '🌤️';
+    case 'overcast':
+      return '☁☁☁';
+    case 'light-rain':
+      return '🌧️';
+    case 'drizzle':
+      return '🌧️';
+    case 'rain':
+      return '🌧️';
+    case 'moderate-rain':
+      return '🌧️';
+    case 'heavy-rain':
+      return '🌧️🌧️🌧️';
+    case 'continuous-heavy-rain':
+      return '🌧️🌧️🌧️';
+    case 'showers':
+      return '🌧️🌧️🌧🌧️🌧️🌧️️';
+    case 'wet-snow ':
+      return '❄->🌧️';
+    case 'thunderstorm-with-rain':
+      return '🌩️';
+    case 'hail':
+      return 'Град брат';
+    case 'thunderstorm-with-hail':
+      return '🌩️🌫❄';
+    case 'light-snow':
+      return '❄️';
+    case 'snow':
+      return '❄️';
+    case 'snow-showers':
+      return '❄️';
+  }
+};
+
 
 const getWeather = async () => {
   const token = await getKeyValue(TOKEN_DICT.token)
@@ -23,6 +64,6 @@ const getWeather = async () => {
   return data
 }
 
-export { getWeather }
+export { getWeather, getIcon }
 
 

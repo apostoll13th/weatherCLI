@@ -1,10 +1,11 @@
 #!/usr/bin/env node
 
 import { getArg } from './helpers/getArg.js'
-import {printError, printHelp, printSucces} from "./services/log.service.js";
+import {printError, printHelp, printSucces, printWeather} from "./services/log.service.js";
 import {saveKeyValue, TOKEN_DICT} from "./services/storage.service.js";
-import {getWeather} from "./services/api.service.js";
+import {getWeather, getIcon} from "./services/api.service.js";
 import {ERROR403, ERROR404} from "./helpers/ErrorConstant.js";
+
 
 const saveToken = async (token) => {
     if(!token.length){
@@ -38,7 +39,15 @@ const saveLatLon = async (lat, lon) => {
 const getForecast = async () => {
    try {
        const weather = await getWeather()
-       console.log(weather)
+       printWeather(weather, getIcon(weather.fact.condition));
+
+
+       // это иконки svg возмоно для conky(gnome) подойдет
+       // const icon = await axios.get(`https://yastatic.net/weather/i/icons/funky/dark/${weather.fact.icon}.svg`)
+       // console.log(icon)
+
+
+
    } catch (e) {
        // Не самая идеальная обработка ошибок, был бы TS мы бы могли проверить на типизацию классов и тп
        if (e?.response?.status == 403){
@@ -76,4 +85,3 @@ const initCLI = () => {
 
 initCLI();
 
-// "lat":"44.843471","lon":"38.568556"
