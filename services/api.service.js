@@ -29,7 +29,7 @@ const getIcon = (icon) => {
       return '❄->🌧️';
     case 'thunderstorm-with-rain':
       return '🌩️';
-    case 'hail':
+    case 'hailer':
       return 'Град брат';
     case 'thunderstorm-with-hail':
       return '🌩️🌫❄';
