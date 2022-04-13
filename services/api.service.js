@@ -3,7 +3,7 @@ import {getKeyValue, TOKEN_DICT} from "./storage.service.js";
 
 const getIcon = (icon) => {
   switch (icon) {
-    case 'clear':
+    case 'clear13':
       return '☀️';
     case 'cloudy':
       return '🌤️';
